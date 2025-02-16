@@ -18,9 +18,10 @@ UTP_WeaponComponent::UTP_WeaponComponent()
 {
 	// Default offset from the character location for projectiles to spawn
 	MuzzleOffset = FVector(100.0f, 0.0f, 10.0f);
-	MaxAmmo = 10;
-	CurrentAmmo = 10;
+	MaxAmmo = 0;
+	CurrentAmmo = 0;
 	bInHand = false;
+	SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 
@@ -123,7 +124,6 @@ bool UTP_WeaponComponent::AttachWeapon(AFPS1Character* TargetCharacter)
 	bInHand = true;
 	SetVisibility(true, true);
 	SetComponentTickEnabled(true);
-	SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	return true;
 }
 
@@ -132,7 +132,6 @@ void UTP_WeaponComponent::DisattachWeapon()
 	bInHand = false;
 	SetVisibility(false, true);
 	SetComponentTickEnabled(false);
-	SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	if (APlayerController* PlayerController = Cast<APlayerController>(Character->GetController()))
 	{
 		if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerController->InputComponent))

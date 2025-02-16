@@ -48,7 +48,6 @@ void UWeaponManager::AddWeapon(UTP_WeaponComponent* NewWeapon)
 				//hide in bag
 				NewWeapon->SetVisibility(false, true);
 				NewWeapon->SetComponentTickEnabled(false);
-				NewWeapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 				break;
 			}
 		}
