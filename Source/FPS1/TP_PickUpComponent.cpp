@@ -11,6 +11,9 @@ UTP_PickUpComponent::UTP_PickUpComponent()
 void UTP_PickUpComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	SetCollisionResponseToAllChannels(ECR_Ignore);
+	SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 
 	// Register our Overlap Event
 	OnComponentBeginOverlap.AddDynamic(this, &UTP_PickUpComponent::OnSphereBeginOverlap);
