@@ -42,10 +42,6 @@ void AFPS1Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UP
 		if (Cast<ATargetBox> (OtherActor))
 		{
 			Cast<UPrimitiveComponent>(OtherActor->GetRootComponent())->AddImpulseAtLocation(GetVelocity() * 30.0f, GetActorLocation());
-			//if (AFPS1PlayerController* PlayerShooter = Cast<AFPS1PlayerController>(Shooter))
-			//{
-			//	PlayerShooter->HitTarget(1.0f);
-			//}
 			Destroy();
 		}
 		else

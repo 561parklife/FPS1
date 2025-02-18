@@ -8,6 +8,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "FPS1Projectile.h"
+#include "FPS1PlayerController.h"
 
 DEFINE_LOG_CATEGORY(LogEnemyCharacter);
 
@@ -18,6 +20,9 @@ AEnemyCharacter::AEnemyCharacter()
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
+	GetCapsuleComponent()->SetGenerateOverlapEvents(false);
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AEnemyCharacter::OnHit);
+	hp = 20;
 		
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
@@ -118,4 +123,21 @@ void AEnemyCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AEnemyCharacter::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (AFPS1Projectile* projectile = Cast<AFPS1Projectile>(OtherActor))
+	{
+		AController* Shooter = projectile->GetShooter();
+		if (AFPS1PlayerController* PlayerShooter = Cast<AFPS1PlayerController>(Shooter))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Hit!"));
+		}
+		hp -= projectile->ProjectileDamage;
+		if (hp <= 0)Destroy();
+		//UGameplayStatics::ApplyDamage(this, 20.0f, Shooter, OtherActor, UDamageType::StaticClass());
+		//OnTakeDamage();
+	}
+	return;
 }
