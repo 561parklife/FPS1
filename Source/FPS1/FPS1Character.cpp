@@ -108,6 +108,6 @@ void AFPS1Character::Jump()
 	{
 		Energy -= 0.2f;
 		Super::Jump();
-		
+		OnUpdateEnergy.Broadcast();
 	}
 }

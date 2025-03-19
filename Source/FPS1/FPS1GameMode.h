@@ -34,6 +34,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float DeltaTime;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float TargetScore;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool Result;
+
 
 };
 

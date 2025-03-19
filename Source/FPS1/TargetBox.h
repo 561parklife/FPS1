@@ -44,6 +44,9 @@ class FPS1_API ATargetBox : public AActor, public ILuaOverriderInterface
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Rendering, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UMaterialInstance> ValuableMaterial;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Rendering, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UMaterialInstance> ExtraMaterial;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Custom, meta = (AllowPrivateAccess = "true"))
 	bool bValuable;
 
@@ -51,7 +54,7 @@ class FPS1_API ATargetBox : public AActor, public ILuaOverriderInterface
 	int ValuableMultiple;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Custom, meta = (AllowPrivateAccess = "true"))
-	int ValuableThreshold;
+	float ValuableThreshold;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Custom, meta = (AllowPrivateAccess = "true"))
 	int hp;

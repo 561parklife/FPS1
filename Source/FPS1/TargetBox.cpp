@@ -14,7 +14,7 @@ ATargetBox::ATargetBox()
 	BoxType = EBoxType::BasicBox;
 	
 	ValuableMultiple = 3;
-	ValuableThreshold = 5;
+	ValuableThreshold = 0.5;
 	bValuable = false;
 
 	hp = 20;
@@ -63,7 +63,7 @@ void ATargetBox::BeginPlay()
 {
 	Super::BeginPlay();
 	int ValueRandom = FMath::RandRange(1, 10);
-	if (ValueRandom > ValuableThreshold)
+	if (ValueRandom > ValuableThreshold*10)
 	{
 		bValuable = true;
 		DefaultMaterial = ValuableMaterial;

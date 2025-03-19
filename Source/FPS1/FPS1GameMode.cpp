@@ -22,6 +22,8 @@ AFPS1GameMode::AFPS1GameMode()
 	PlayerStateClass = APlayerState::StaticClass();
 	GameTime = 10.0f;
 	DeltaTime = 1.0f;
+	TargetScore = 6.0f;
+	Result = false;
 }
 
 void AFPS1GameMode::UpdateTime()

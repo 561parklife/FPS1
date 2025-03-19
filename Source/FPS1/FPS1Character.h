@@ -16,7 +16,7 @@ class UWeaponManager;
 struct FInputActionValue;
 
 //DECLARE_DYNAMIC_DELEGATE_RetVal(float, FGetFloat);
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateUI);
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 UCLASS(config=Game)
@@ -51,6 +51,9 @@ class AFPS1Character : public ACharacter
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Custom, meta = (AllowPrivateAccess = "true"))
 	float Energy;
+
+	UPROPERTY(BlueprintAssignable)
+	FUpdateUI OnUpdateEnergy;
 
 	FTimerHandle DamageTimer;
 	
